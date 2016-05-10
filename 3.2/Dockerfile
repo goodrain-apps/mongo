@@ -55,8 +55,6 @@ RUN set -x \
 	&& rm -rf /var/lib/mongodb \
 	&& mv /etc/mongod.conf /etc/mongod.conf.orig
 
-RUN mkdir -p /data/db /data/configdb \
-	&& chown -R mongodb:mongodb /data
 VOLUME /data
 
 COPY 3.2/docker-entrypoint.sh /entrypoint.sh
