@@ -5,7 +5,7 @@
 set -e
 
 # read env set mongo config file
-source /tmp/bin/set_config.sh
+source /tmp/bin/set_config_file.sh
 
 if [ "${1:0:1}" = '-' ]; then
 	set -- mongod "$@"
