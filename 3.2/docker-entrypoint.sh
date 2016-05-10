@@ -2,7 +2,7 @@
 
 [ $DEBUG ] && set -x
 
-set -e
+[ $ERRORSTOP ] && set -e
 
 # read env set mongo config file
 source /tmp/bin/set_config_file.sh
