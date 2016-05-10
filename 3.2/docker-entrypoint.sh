@@ -5,6 +5,12 @@ if [ "${1:0:1}" = '-' ]; then
 	set -- mongod "$@"
 fi
 
+for d in db configdb
+do
+  [ ! -d $DATADIR/$d ] && mkdir $DATADIR/$d
+  chown -R mongodb:mongodb $DATADIR/$d
+done
+
 # allow the container to be started with `--user`
 if [ "$1" = 'mongod' -a "$(id -u)" = '0' ]; then
 	chown -R mongodb /data/configdb /data/db
