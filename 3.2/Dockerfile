@@ -1,5 +1,11 @@
 FROM debian:wheezy
 
+# ENV
+ENV MONGO_MAJOR 3.2
+ENV MONGO_VERSION 3.2.6
+ENV GOSU_VERSION 1.7
+ENV DATADIR /data
+
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -g 200 -r mongodb && useradd  -u 200 -r -g mongodb mongodb
 
@@ -9,7 +15,6 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 # grab gosu for easy step-down from root
-ENV GOSU_VERSION 1.7
 RUN set -x \
 	&& apt-get update && apt-get install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/* \
 	&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
@@ -37,9 +42,6 @@ RUN set -ex \
 	&& for key in $GPG_KEYS; do \
 		apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
 	done
-
-ENV MONGO_MAJOR 3.2
-ENV MONGO_VERSION 3.2.6
 
 RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list.d/mongodb-org.list
 
