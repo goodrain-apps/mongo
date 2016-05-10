@@ -1,7 +1,7 @@
 FROM debian:wheezy
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
+RUN groupadd -g 200 -r mongodb && useradd  -u 200 -r -g mongodb mongodb
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -20,7 +20,7 @@ RUN set -x \
 	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu \
 	&& gosu nobody true \
-	&& apt-get purge -y --auto-remove ca-certificates wget
+	&& apt-get purge -y --auto-remove ca-certificates
 
 # pub   4096R/AAB2461C 2014-02-25 [expires: 2016-02-25]
 #       Key fingerprint = DFFA 3DCF 326E 302C 4787  673A 01C4 E7FA AAB2 461C
@@ -56,8 +56,8 @@ RUN set -x \
 	&& mv /etc/mongod.conf /etc/mongod.conf.orig
 
 RUN mkdir -p /data/db /data/configdb \
-	&& chown -R mongodb:mongodb /data/db /data/configdb
-VOLUME /data/db /data/configdb
+	&& chown -R mongodb:mongodb /data
+VOLUME /data
 
 COPY 3.2/docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
