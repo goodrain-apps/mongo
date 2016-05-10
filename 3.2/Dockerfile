@@ -60,7 +60,7 @@ RUN set -x \
 VOLUME /data
 
 COPY 3.3/bin /tmp/bin
-COPY 3.2/etc /etc
+COPY 3.2/etc /tmp/etc
 COPY 3.2/docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
