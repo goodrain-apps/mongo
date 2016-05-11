@@ -6,6 +6,10 @@ ENV MONGO_VERSION 3.2.6
 ENV GOSU_VERSION 1.7
 ENV DATADIR /data
 
+# timezone
+RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
+
+
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -g 200 -r mongodb && useradd  -u 200 -r -g mongodb mongodb
 
