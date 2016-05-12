@@ -20,7 +20,7 @@ done
 # allow the container to be started with `--user`
 if [ "$1" = 'mongod' -a "$(id -u)" = '0' ]; then
 	chown -R mongodb.mongodb $DATADIR
-	exec gosu mongodb "$BASH_SOURCE" "$@"
+	exec gosu mongodb "$@"
 fi
 
 if [ "$1" = 'mongod' ]; then
