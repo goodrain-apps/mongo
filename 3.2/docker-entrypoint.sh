@@ -11,6 +11,8 @@ if [ "${1:0:1}" = '-' ]; then
 	set -- mongod "$@"
 fi
 
+sleep ${PAUSE:-0}
+
 # perpare data folders
 for d in db configdb
 do
