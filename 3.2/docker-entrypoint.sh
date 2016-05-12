@@ -16,13 +16,13 @@ sleep ${PAUSE:-0}
 # perpare data folders
 for d in db configdb
 do
-  [ ! -d $DATADIR/$d ] && mkdir $DATADIR/$d && chown -R mongodb:mongodb $DATADIR/$d
+  [ ! -d $DATADIR/$d ] && mkdir $DATADIR/$d && chown -R 200.200 $DATADIR/$d
 done
 
 # allow the container to be started with `--user`
 if [ "$1" = 'mongod' -a "$(id -u)" = '0' ]; then
-	chown -R mongodb.mongodb $DATADIR
-	exec gosu mongodb "$@"
+	chown -R 200.200 $DATADIR
+	exec gosu 200 "$@"
 fi
 
 if [ "$1" = 'mongod' ]; then
