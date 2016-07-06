@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:jessie
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
@@ -28,9 +28,9 @@ RUN set -x \
 RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 0C49F3730359A14518585931BC711F9BA15703C6
 
 ENV MONGO_MAJOR 3.3
-ENV MONGO_VERSION 3.3.5
+ENV MONGO_VERSION 3.3.9
 
-RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list.d/mongodb-org.list
+RUN echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list.d/mongodb-org.list
 
 RUN set -x \
 	&& apt-get update \
