@@ -47,6 +47,12 @@ RUN set -ex \
 		apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
 	done
 
+<<<<<<< HEAD
+=======
+ENV MONGO_MAJOR 3.2
+ENV MONGO_VERSION 3.2.7
+
+>>>>>>> ee77db94092c03d9e8555a54ec8d22b4b1cf647d
 RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list.d/mongodb-org.list
 
 RUN set -x \
