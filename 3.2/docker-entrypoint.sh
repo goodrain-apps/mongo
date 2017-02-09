@@ -21,7 +21,7 @@ done
 
 # allow the container to be started with `--user`
 if [ "$1" = 'mongod' -a "$(id -u)" = '0' ]; then
-	chown -R 200.200 $DATADIR
+	chown 200.200 $DATADIR
 	exec gosu 200 "$@"
 fi
 
