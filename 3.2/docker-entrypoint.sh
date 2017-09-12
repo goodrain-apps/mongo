@@ -22,6 +22,7 @@ case MEMORY_SIZE in
 		;;
 	8xlarge)
 		MONGO_MEMORY=5G
+		;;
 	*)
 		MONGO_MEMORY=0.2G
 		;;
