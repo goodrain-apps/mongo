@@ -18,9 +18,6 @@ case $MEMORY_SIZE in
 		;;
 esac
 
-# replace config
-set -- "--wiredTigerCacheSizeGB=$MONGO_MEMORY" "$@"
-
 originalArgOne="$1"
 
 sleep ${PAUSE:-0}
@@ -32,6 +29,7 @@ if [[ "$originalArgOne" == mongo* ]]; then
 		set -- $numa "$@"
 	fi
 fi
+
 
 # usage: file_env VAR [DEFAULT]
 #    ie: file_env 'XYZ_DB_PASSWORD' 'example'
@@ -250,5 +248,6 @@ fi
 
 sleep ${PAUSE:-0}
 
+_mongod_hack_ensure_arg_val --wiredTigerCacheSizeGB "$MONGO_MEMORY" "${mongodHackedArgs[@]}"
 
 exec "$@"
