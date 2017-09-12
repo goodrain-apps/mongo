@@ -5,16 +5,16 @@
 # set config file
 case $MEMORY_SIZE in
 	2xlarge)
-		MONGO_MEMORY=1G
+		MONGO_MEMORY=1
 		;;
 	4xlarge)
-		MONGO_MEMORY=3G
+		MONGO_MEMORY=3
 		;;
 	8xlarge)
-		MONGO_MEMORY=6G
+		MONGO_MEMORY=6
 		;;
 	*)
-		MONGO_MEMORY=1G
+		MONGO_MEMORY=1
 		;;
 esac
 
