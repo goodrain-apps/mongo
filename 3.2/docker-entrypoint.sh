@@ -1,11 +1,34 @@
 #!/bin/bash
-set -Eeuo pipefail
 
 [ $DEBUG ] && set -x
 
 if [ "${1:0:1}" = '-' ]; then
 	set -- mongod "$@"
 fi
+
+# set config file
+case MEMORY_SIZE in
+	medium)
+		MONGO_MEMORY=0.2G
+		;;
+	large)
+		MONGO_MEMORY=0.5G
+		;;
+	2xlarge)
+		MONGO_MEMORY=1G
+		;;
+	4xlarge)
+		MONGO_MEMORY=2.5G
+		;;
+	8xlarge)
+		MONGO_MEMORY=5G
+	*)
+		MONGO_MEMORY=0.2G
+		;;
+esac
+
+# replace config
+sed -i  "s/__MONGO_MEMORY__/$MONGO_MEMORY/g" /etc/mongod.conf
 
 originalArgOne="$1"
 
