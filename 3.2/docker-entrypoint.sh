@@ -3,24 +3,18 @@
 [ $DEBUG ] && set -x
 
 # set config file
-case MEMORY_SIZE in
-	medium)
-		MONGO_MEMORY=0.2G
-		;;
-	large)
-		MONGO_MEMORY=0.5G
-		;;
+case $MEMORY_SIZE in
 	2xlarge)
 		MONGO_MEMORY=1G
 		;;
 	4xlarge)
-		MONGO_MEMORY=2.5G
+		MONGO_MEMORY=3G
 		;;
 	8xlarge)
-		MONGO_MEMORY=5G
+		MONGO_MEMORY=6G
 		;;
 	*)
-		MONGO_MEMORY=0.2G
+		MONGO_MEMORY=1G
 		;;
 esac
 
@@ -29,6 +23,7 @@ sed -i  "s/__MONGO_MEMORY__/$MONGO_MEMORY/g" /etc/mongod.conf
 
 originalArgOne="$1"
 
+sleep ${PAUSE:-0}
 # you should use numactl to start your mongod instances, including the config servers, mongos instances, and any clients.
 # https://docs.mongodb.com/manual/administration/production-notes/#configuring-numa-on-linux
 if [[ "$originalArgOne" == mongo* ]]; then
