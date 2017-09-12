@@ -2,10 +2,6 @@
 
 [ $DEBUG ] && set -x
 
-if [ "${1:0:1}" = '-' ]; then
-	set -- mongod "$@"
-fi
-
 # set config file
 case MEMORY_SIZE in
 	medium)
@@ -32,21 +28,6 @@ esac
 sed -i  "s/__MONGO_MEMORY__/$MONGO_MEMORY/g" /etc/mongod.conf
 
 originalArgOne="$1"
-
-# allow the container to be started with `--user`
-# all mongo* commands should be dropped to the correct user
-if [[ "$originalArgOne" == mongo* ]] && [ "$(id -u)" = '0' ]; then
-	if [ "$originalArgOne" = 'mongod' ]; then
-		chown -R mongodb /data/configdb /data/db
-	fi
-
-	# make sure we can write to stdout and stderr as "mongodb"
-	# (for our "initdb" code later; see "--logpath" below)
-	chown --dereference mongodb "/proc/$$/fd/1" "/proc/$$/fd/2" || :
-	# ignore errors thanks to https://github.com/docker-library/mongo/issues/149
-
-	exec gosu mongodb "$BASH_SOURCE" "$@"
-fi
 
 # you should use numactl to start your mongod instances, including the config servers, mongos instances, and any clients.
 # https://docs.mongodb.com/manual/administration/production-notes/#configuring-numa-on-linux
