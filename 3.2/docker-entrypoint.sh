@@ -248,6 +248,4 @@ fi
 
 sleep ${PAUSE:-0}
 
-_mongod_hack_ensure_arg_val --wiredTigerCacheSizeGB "$MONGO_MEMORY" "${mongodHackedArgs[@]}"
-
-exec "$@"
+exec gosu mongodb  "$@" --wiredTigerCacheSizeGB "$MONGO_MEMORY"
