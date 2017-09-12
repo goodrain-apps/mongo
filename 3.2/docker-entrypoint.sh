@@ -18,6 +18,12 @@ case $MEMORY_SIZE in
 		;;
 esac
 
+# perpare data folders
+for d in db configdb
+do
+  [ ! -d /data/$d ] && mkdir /data/$d && chown mongodb.mongodb /data/$d
+done
+
 originalArgOne="$1"
 
 sleep ${PAUSE:-0}
