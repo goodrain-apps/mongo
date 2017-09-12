@@ -19,7 +19,7 @@ case $MEMORY_SIZE in
 esac
 
 # replace config
-sed -i  "s/__MONGO_MEMORY__/$MONGO_MEMORY/g" /etc/mongod.conf
+set -- "--wiredTigerCacheSizeGB=$MONGO_MEMORY" "$@"
 
 originalArgOne="$1"
 
