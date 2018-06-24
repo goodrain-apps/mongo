@@ -1,4 +1,10 @@
 #!/bin/bash
+
+[ $DEBUG ] && set -x
+
+# read env set mongo config file
+source /tmp/bin/set_config_file.sh
+
 set -e
 
 if [ "${1:0:1}" = '-' ]; then
