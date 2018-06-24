@@ -47,7 +47,7 @@ RUN set -ex \
 
 
 ENV MONGO_MAJOR 3.2
-ENV MONGO_VERSION 3.2.16
+ENV MONGO_VERSION 3.2.3
 
 RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list.d/mongodb-org.list
 
