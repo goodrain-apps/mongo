@@ -62,8 +62,6 @@ RUN set -x \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /var/lib/mongodb \
 	&& mv /etc/mongod.conf /etc/mongod.conf.orig
-	&& wget http://rainbond-pkg.oss-cn-shanghai.aliyuncs.com/env2config -O /usr/bin/env2config \
-	&& chmod +x /usr/bin/env2config
 
 VOLUME /data
 
