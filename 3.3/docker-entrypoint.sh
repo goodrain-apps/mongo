@@ -2,8 +2,6 @@
 
 set -e
 
-sed -i "s/DB_PATH/${DB_PATH}/g" etc/mongod.conf
-
 if [ "${1:0:1}" = '-' ]; then
 	set -- mongod "$@"
 fi
