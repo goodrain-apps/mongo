@@ -3,6 +3,7 @@ FROM debian:wheezy
 # ENV
 ENV GOSU_VERSION 1.7
 ENV DATADIR /data
+ENV DB_PATH=/data/db
 
 # timezone
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
