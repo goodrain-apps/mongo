@@ -5,9 +5,6 @@
 # read env set mongo config file
 source /tmp/bin/set_config_file.sh
 
-set -xe
-sed -i "s/DB_PATH/${DB_PATH}/g" etc/mongod.conf
-
 set -e
 
 if [ "${1:0:1}" = '-' ]; then
