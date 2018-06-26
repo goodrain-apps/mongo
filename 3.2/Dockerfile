@@ -7,6 +7,12 @@ ENV PORT 27017
 ENV ENABLED true
 ENV DIRECTORYPERDB false
 ENV SLOWOPTHRESHOLDMS 100
+ENV VERBOSITY 0
+ENV TRACEALLEXCEPTIONS true
+ENV LOGPATH /data/mongo.log
+ENV LOGAPPEND false
+ENV DESTINATION file
+ENV DBPATH /data/db
 # timezone
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
