@@ -37,6 +37,18 @@
   虽然MongoDB非常强大并试图保留关系型数据库的很多特性，但它并不追求具备关系型数据库的所有功能。只要有可能，数据库服务器就会将处理逻辑交给客户端。这种精简方式的设计是MongoDB能够实现如此高性能的原因之一
   ```
 
+### 环境变量配置说明
+
+* DBPATH：数据库存放路径
+* LOGPATH：日志文件路径
+* VERBOSITY：日志的等级0-5,默认0
+* TRACEALLEXCEPTIONS：是否开启详细错误日志
+* DESTINATION：日志输出方式,file/syslog,如果是file，需指定path，默认是输出到标准输出流中
+* LOGAPPEND：启动时,日志追加在已有日志文件内还是备份旧日志后，创建新文件记录日志, 默认false
+* ENABLED：启动journal,64位系统默认开启，32位默认关闭
+* DIRECTORYPERDB：使用单独的目录来存储每个数据库的数据,默认false,如果需要更改，要备份数据，删除掉dbPath下的文件，重建后导入数据
+* SLOWOPTHRESHOLDMS：认定为查询速度缓慢的时间阈值
+
 
 
 ### 性能测试
