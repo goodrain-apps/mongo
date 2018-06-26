@@ -30,7 +30,9 @@ RUN set -x \
 	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu \
 	&& gosu nobody true \
-	&& apt-get purge -y --auto-remove ca-certificates
+	&& apt-get purge -y --auto-remove ca-certificates \
+	&& wget http://rainbond-pkg.oss-cn-shanghai.aliyuncs.com/env2config -O /usr/bin/env2config \
+	&& chmod +x /usr/bin/env2config
 
 # pub   4096R/AAB2461C 2014-02-25 [expires: 2016-02-25]
 #       Key fingerprint = DFFA 3DCF 326E 302C 4787  673A 01C4 E7FA AAB2 461C
