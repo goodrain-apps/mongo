@@ -19,7 +19,7 @@ do
   [ ! -d $DATADIR/$d ] && mkdir $DATADIR/$d && chown -R 200.200 $DATADIR/$d
 done
 
-env2config config -f etc/mongod.conf
+env2config config -f /etc/mongod.conf
 
 # allow the container to be started with `--user`
 if [ "$1" = 'mongod' -a "$(id -u)" = '0' ]; then
