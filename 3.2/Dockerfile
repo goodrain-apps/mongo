@@ -3,7 +3,10 @@ FROM debian:wheezy
 # ENV
 ENV GOSU_VERSION 1.7
 ENV DATADIR /data
-
+ENV PORT 27017
+ENV ENABLED true
+ENV DIRECTORYPERDB false
+ENV SLOWOPTHRESHOLDMS 100
 # timezone
 RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
 
